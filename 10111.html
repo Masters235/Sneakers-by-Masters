@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SNEARKERS BY MASTERS - Clothing Brand</title>
+  <link rel="stylesheet" href="10111.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <h2>SNEARKERS BY MASTERS</h2>
+    <nav>
+      <a onclick="showSection('home')">Home</a>
+      <a onclick="showSection('shop')">Shop</a>
+      <a onclick="showSection('about')">About</a>
+      <a onclick="showSection('contact')">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="hero section">
+    <h1>Redefining Street Fashion</h1>
+    <p>Trendy, Comfortable, Sustainable</p>
+    <button class="btn" onclick="showSection('shop')">Shop Now</button>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="products section">
+    <div class="product-card hoodie">
+      <img src="01.png" alt="Hoodie">
+      <h3>Classic Hoodie</h3>
+      <p>Enter Amount:</p>
+      <input type="number" id="amount-hoodie" placeholder="e.g. 45" />
+      <button class="btn" onclick="orderWhatsApp('Classic Hoodie', 'amount-hoodie')">Order via WhatsApp</button>
+    </div>
+    <div class="product-card jacket">
+      <img src="02.PNG" alt="Jacket">
+      <h3>Urban Jacket</h3>
+      <p>Enter Amount:</p>
+      <input type="number" id="amount-jacket" placeholder="e.g. 70" />
+      <button class="btn" onclick="orderWhatsApp('Urban Jacket', 'amount-jacket')">Order via WhatsApp</button>
+    </div>
+    <div class="product-card jeans">
+      <img src="04.PNG" alt="Nike Shocks">
+      <h3>Nike Shoks</h3>
+      <p>Enter Amount:</p>
+      <input type="number" id="amount-nike" placeholder="e.g. 70" />
+      <button class="btn" onclick="orderWhatsApp('Nike Shoks', 'amount-nike')">Order via WhatsApp</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about section">
+    <h2>About Us</h2>
+    <p>We create modern streetwear that blends comfort with edgy fashion. Sustainable fabrics, bold designs.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact section">
+    <h2>Contact Us</h2>
+    <p>📞 +266 63266891 / 62550839</p>
+    <form>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SNEARKERS BY MASTERS. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+      });
+      const selected = document.getElementById(id);
+      if (selected) selected.style.display = 'block';
+    }
+
+    function orderWhatsApp(productName, inputId) {
+      const amount = document.getElementById(inputId).value;
+      if (!amount) {
+        alert("Please enter an amount to order.");
+        return;
+      }
+      const phone = "62550839";
+      const message = encodeURIComponent(`Hello, I want to order "${productName}" for $${amount}.`);
+      const link = `https://wa.me/258${phone}?text=${message}`;
+      window.open(link, "_blank");
+    }
+
+    // Show Home by default
+    window.onload = () => showSection('home');
